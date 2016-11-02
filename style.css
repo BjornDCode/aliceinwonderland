@@ -1,0 +1,239 @@
+body {
+  margin: 0;
+  overflow: hidden;
+
+}
+
+#bg {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('assets/images/room.svg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: transform 1s;
+}
+#bg.zoom {
+  transform: scale(3) translateX(-30%) translateY(-32%);;
+}
+#bg > * {
+  position: absolute;
+}
+
+#startButton {
+  font-size: 100px;
+  z-index: 100;
+  cursor: pointer;
+  background: #c1272d;
+  color: white;
+  border: none;
+  width: 40%;
+  height: 20%;
+  top: calc(50% - 10%);
+  left: calc(50% - 20%);
+}
+#startButton.hidden {
+  display: none;
+}
+
+#door {
+  background: url('assets/images/door_closeSpriteSheet2.svg');
+  background-repeat: no-repeat;
+  background-size: 1200px;
+  background-position: -10px 0;
+  width: 195px;
+  height: 216px;
+  position: absolute;
+  bottom: 0%;
+  right: 9.1%;
+}
+
+#rabbit {
+  height: 20%;
+  bottom: 3%;
+  right: 100%;
+  transition: right 3s;
+  opacity: 1;
+  z-index: 100;
+}
+#rabbit.move {
+  right: 9%;
+  animation: walk .3s linear infinite;
+  animation-timing-function: linear;
+}
+#rabbit.faded {
+  animation: fadeOut .2s forwards;
+}
+
+#alice {
+  height: 50%;
+  bottom: 3%;
+  right: 100%;
+  transition: right 4s;
+  z-index: 100;
+}
+#alice.move {
+  animation: walk .3s linear infinite;
+  animation-timing-function: linear;
+}
+#alice.arrived {
+  right: 25%;
+}
+
+#handle1 {
+  height: 7%;
+  right: 10%;
+  bottom: 7%;
+  opacity: 0;
+  transition: opacity: .2s;
+}
+
+#handle1.visible {
+  opacity: 1;
+}
+
+#cookies {
+  height: 13%;
+  bottom: 10%;
+  right: 30%;
+}
+#eatMeSign, #drinkMeSign {
+  width: 12%;
+  transform: rotateZ(45deg);
+  opacity: 0;
+  animation: float 1s infinite;
+}
+#eatMeSign.visible, #drinkMeSign.visible {
+  opacity: 1;
+}
+#eatMeSign {
+  bottom: 25%;
+  right: 35%;
+}
+
+#bottleFull, #bottleEmpty {
+  height: 10%;
+}
+
+#bottleFull {
+  bottom: 40%;
+  right: 75%;
+}
+#drinkMeSign {
+  bottom: 55%;
+  right: 77%;
+}
+
+#key {
+  width: 3%;
+  right: 85%;
+  bottom: 40%;
+}
+
+#cookies.activeHover, #bottleFull.activeHover. #bottleEmpty.activeHover, #key.activeHover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+#bulbOn, #bulbOff {
+  position: absolute;
+  height: 30%;
+  right: 30%;
+  top: -3%;
+  cursor: pointer;
+}
+
+#bulbOn.flicker {
+  animation: flicker 1s;
+}
+
+#mirror {
+  height: 20%;
+  right: 70%;
+  bottom: 60%;
+  transition: transform .7s;
+  cursor: pointer;
+}
+#mirror.crooked {
+  transform: rotateZ(-10deg);
+}
+
+#painting {
+  height: 30%;
+  right: 50%;
+  bottom: 55%;
+  cursor: pointer;
+}
+
+/*Painting SVG styles*/
+.cls-1,.cls-16{fill:none;}.cls-2{clip-path:url(#clip-path);}.cls-3{clip-path:url(#clip-path-2);}.cls-4{opacity:0.37;}.cls-5{clip-path:url(#clip-path-3);}.cls-6{fill:#282828;}.cls-7{fill:#d3a746;}.cls-8{fill:#fccd49;}.cls-9{fill:#e5b84a;}.cls-10{fill:#b3b3b3;}.cls-11,.cls-16{stroke:#000;stroke-miterlimit:10;}.cls-12{fill:#edcba9;}.cls-13{fill:#c1272d; transition: fill 1s;}.cls-14{fill:#fff;}.cls-15{fill:#662d91;}.cls-16{stroke-width:9px;}.cls-17{fill:#fcee21; transition: fill 1s;}
+
+.evilSuit {
+  fill: black;
+}
+.evilCrown {
+  fill: purple;
+}
+
+
+
+/*Animations*/
+@keyframes walk {
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  25% {
+    transform: rotateZ(40deg);
+  }
+  75% {
+    transform: rotateZ(50deg);
+  }
+  100% {
+    transform: rotateZ(45deg);
+  }
+}
+
+@keyframes flicker {
+  10% {
+    opacity: 0;
+  }
+  20% {
+    opacity: .5;
+  }
+  30% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1
+  }
+  70% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
