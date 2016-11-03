@@ -66,7 +66,7 @@ body {
 }
 
 #alice {
-  height: 50%;
+  height: 65%;
   bottom: 3%;
   right: 100%;
   transition: right 4s;
@@ -86,6 +86,10 @@ body {
   transform: scaleX(-1);
   filter: FlipH;
   -ms-filter: "FlipH";
+}
+#alice.shrinks { 
+    transition: height 1.2s;
+    height: 25%;
 }
 #handle {
   width: 40px;
@@ -133,6 +137,10 @@ body {
 #bottleFull, #bottleEmpty  {
   bottom: 40%;
   right: 75%;
+}
+#bottleFull.bottleclicked{
+    animation: drink 8s 1 forwards;
+    z-index: 100;
 }
 #drinkMeSign {
   bottom: 55%;
@@ -251,4 +259,28 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+@keyframes drink {
+    20%{
+        bottom: 50%;
+        right: 70%;
+        transform: rotate(55deg);
+    }
+    50%{
+        bottom: 50%;
+        right: 70%;
+        transform: rotate(65deg);
+    }
+    80%{
+        bottom: 50%;
+        right: 70%;
+        transform: rotate(75deg);
+    }
+    100%{
+        bottom: 40%;
+        right: 75%;
+        transform: rotate(0deg);
+    }
+    
 }
