@@ -11,7 +11,11 @@ var suitAndMouth = document.querySelectorAll('.cls-13');
 var bulbOn = document.querySelector('#bulbOn');
 var bottleFull = document.querySelector('#bottleFull');
 var drinkMeSign = document.querySelector('#drinkMeSign');
+<<<<<<< HEAD
+var bottleEmpty = document.querySelector('#bottleEmpty');
+=======
 var clickMeSign = document.querySelector('#clickMeSign');
+>>>>>>> 397d007021fb636daeb1057078f85863855c1199
 
 var doorCloseSound = document.querySelector('#doorCloseSound');
 var rabbitRunningSound = document.querySelector('#rabbitRunningSound');
@@ -20,6 +24,8 @@ var creakSound = document.querySelector('#creakSound');
 var laughSound = document.querySelector('#laughSound');
 var flickerSound = document.querySelector('#flickerSound');
 var pingSound = document.querySelector('#pingSound');
+var drinkingSound = document.querySelector('#drinkingSound');
+var shrinkSound = document.querySelector('#shrinkSound');
 
 var line1 = document.querySelector('#line1');
 var line2 = document.querySelector('#line2');
@@ -30,6 +36,11 @@ var line6 = document.querySelector('#line6');
 var line7 = document.querySelector('#line7');
 var line8 = document.querySelector('#line8');
 var line9 = document.querySelector('#line9');
+
+var line10 = document.querySelector('#line10');
+var line11 = document.querySelector('#line11');
+var line12 = document.querySelector('#line12');
+var line13 = document.querySelector('#line13');
 
 // Easter Eggs
 mirror.addEventListener('click', function() {
@@ -197,15 +208,55 @@ function aliceMoveToDrink() {
 }
 
 function stopWalkAgain() {
-  alice.removeEventListener('transitionend', stopWalk);
+  alice.removeEventListener('transitionend', stopWalkAgain);
   alice.classList.remove('move');
   aliceRunningSound.pause();
   aliceDrink();
 }
 
 function aliceDrink() {
-
+    bottleFull.classList.add('bottleclicked');
+    setTimeout(function() {
+          drinkingSound.play();
+        },1300);
+    bottleFull.addEventListener('animationend', stopDrinking);
 }
+function stopDrinking() {
+    bottleFull.classList.add('hidden');
+    bottleEmpty.classList.remove('hidden');
+    drinkingSound.pause();
+    alice.classList.add('shrinks');
+    shrinkSound.play();
+    alice.addEventListener('transitionend', secondDialogue);
+}
+function secondDialogue() {
+    setTimeout(function() {
+        line10.play();
+    }, 300);
+    
+    line10.addEventListener('ended', function() {
+    setTimeout(function() {
+        handleSpeaking(18);
+      line11.play();
+    }, 300);
+  });
+    
+    line11.addEventListener('ended', function() {
+    setTimeout(function() {
+      line12.play();
+    }, 300);
+  });
+    
+    line12.addEventListener('ended', function() {
+    setTimeout(function() {
+        handleSpeaking(1);
+      line13.play();
+    }, 300);
+  });
+}
+
+
+    
 
 // Helper Functions
 
