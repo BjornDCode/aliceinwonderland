@@ -79,16 +79,28 @@ body {
 #alice.arrived {
   right: 25%;
 }
-
-#handle1 {
-  height: 7%;
-  right: 10%;
+#alice.atBottle {
+  right: 60%;
+}
+#alice.flipped {
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+#handle {
+  width: 40px;
+  height: 60px;
+  background: url('assets/images/handle_spriteSheet.svg');
+  background-repeat: no-repeat;
+  background-size: 200px;
+  background-position: 0;
+  right: 10.5%;
   bottom: 7%;
   opacity: 0;
-  transition: opacity: .2s;
+  transition: opacity .2s;
 }
 
-#handle1.visible {
+#handle.visible {
   opacity: 1;
 }
 
@@ -102,6 +114,7 @@ body {
   transform: rotateZ(45deg);
   opacity: 0;
   animation: float 1s infinite;
+  z-index: 100;
 }
 #eatMeSign.visible, #drinkMeSign.visible {
   opacity: 1;
@@ -114,8 +127,10 @@ body {
 #bottleFull, #bottleEmpty {
   height: 10%;
 }
-
-#bottleFull {
+#bottleFull.hidden, #bottleEmpty.hidden {
+  opacity: 0;
+}
+#bottleFull, #bottleEmpty  {
   bottom: 40%;
   right: 75%;
 }
@@ -130,7 +145,7 @@ body {
   bottom: 40%;
 }
 
-#cookies.activeHover, #bottleFull.activeHover. #bottleEmpty.activeHover, #key.activeHover {
+#cookies.activeHover:hover, #bottleFull.activeHover:hover, #bottleEmpty.activeHover:hover, #key.activeHover:hover {
   cursor: pointer;
   transform: scale(1.2);
 }
