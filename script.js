@@ -11,7 +11,11 @@ var suitAndMouth = document.querySelectorAll('.cls-13');
 var bulbOn = document.querySelector('#bulbOn');
 var bottleFull = document.querySelector('#bottleFull');
 var drinkMeSign = document.querySelector('#drinkMeSign');
+<<<<<<< HEAD
 var bottleEmpty = document.querySelector('#bottleEmpty');
+=======
+var clickMeSign = document.querySelector('#clickMeSign');
+>>>>>>> 397d007021fb636daeb1057078f85863855c1199
 
 var doorCloseSound = document.querySelector('#doorCloseSound');
 var rabbitRunningSound = document.querySelector('#rabbitRunningSound');
@@ -86,6 +90,9 @@ function startAnimation() {
 
 function rabbitDisappear() {
   rabbit.classList.add('faded');
+  rabbit.addEventListener('animationend', function() {
+    rabbit.classList.add('gone');
+  });
   closeDoor(doorHasClosed);
 }
 
@@ -106,16 +113,21 @@ function stopWalk() {
 
 function aliceHasArrived() {
   bg.classList.add('zoom');
-  bg.addEventListener('transitionend', runFirstDialogue);
+  bg.addEventListener('transitionend', function(e) {
+    if (e.propertyName == 'transform') {
+      clickMeSign.classList.add('visible');
+      pingSound.play();
+    }
+  });
+  handle.addEventListener('click', runFirstDialogue);
 }
 
 function runFirstDialogue(e) {
-  if (e.propertyName == 'transform') {
-    handleSpeaking(0, true);
-    line1.play();
-    firstDialogue();
-    bg.removeEventListener('transitionend', runFirstDialogue);
-  }
+  clickMeSign.classList.remove('visible');
+  handleSpeaking(0, true);
+  line1.play();
+  firstDialogue();
+  bg.removeEventListener('transitionend', runFirstDialogue);
 }
 
 function firstDialogue() {
@@ -188,7 +200,7 @@ function aliceMoveToDrink() {
   alice.classList.remove('arrived');
   alice.classList.add('atBottle');
   alice.classList.add('move');
-  // alice.classList.add('flipped');
+  alice.setAttribute('src', 'assets/images/alice_flipped.svg');
   aliceRunningSound.currentTime = 0;
   aliceRunningSound.playbackRate = 2;
   aliceRunningSound.play();
@@ -281,7 +293,7 @@ function handleSpeaking(length, short) {
   if (short) {
     loopLength = 2;
   } else {
-    loopLength = 4;
+    loopLength = 3;
   }
   var interval = setInterval(function() {
     if (count < loopLength) {
